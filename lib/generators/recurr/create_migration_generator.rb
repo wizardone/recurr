@@ -1,4 +1,3 @@
-require 'byebug'
 module Recurr
   module Generators
     class CreateMigrationGenerator < Rails::Generators::Base
@@ -7,8 +6,8 @@ module Recurr
 
       source_root File.expand_path('templates/', __dir__)
 
-      def self.next_migration_number('db/migrate')
-        current_migration_number('db/migrate') + 1
+      def self.next_migration_number(path)
+        current_migration_number(path) + 1
       end
 
       desc %q{Copies the recurring event table migration into the migrations folder}
