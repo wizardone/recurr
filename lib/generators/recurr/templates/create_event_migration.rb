@@ -1,4 +1,4 @@
-class CreateRecurringEvents < ActiveRecord::Migration[5.0]
+class CreateRecurringEvents < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :recurring_events do |t|
       t.string :name

@@ -10,6 +10,12 @@ module Recurr
         current_migration_number(path) + 1
       end
 
+      def migration_version
+        if ::Rails.version.start_with?('5')
+          "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
+        end
+      end
+
       desc %q{Copies the recurring event table migration into the migrations folder}
       def create_migration_file
         migration_template "create_event_migration.rb", "db/migrate/create_recurring_events.rb"

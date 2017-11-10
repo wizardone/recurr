@@ -19,8 +19,17 @@ Or install it yourself as:
     $ gem install recurr
 
 ## Usage
+1. First run the generator to copy the necessary migration.
 
-TODO: Write usage instructions here
+2. Run the migration with `rake db:migrate`.
+
+3. Let's say you have an `Event` model and you want it to be recurring.
+
+```ruby
+class NoticeEvent < ApplicationRecord
+  include Recurr::Event
+end
+```
 
 ## Development
 
@@ -30,7 +39,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Stefan Slaveykov/recurr. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/wizardonee/recurr. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
