@@ -1,12 +1,11 @@
 module Recurr
-  module Event
+  module ActiveRecord
 
     def included(base)
       base.extend(ClassMethods)
     end
 
     module ClassMethods
-
     end
   end
 end
