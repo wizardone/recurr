@@ -23,11 +23,11 @@ Or install it yourself as:
 
 2. Run the migration with `rake db:migrate`.
 
-3. Let's say you have an `Event` model and you want it to be recurring.
+3. Let's say you have an `Payment` model and you want it to be recurring.
 
 ```ruby
-class NoticeEvent < ApplicationRecord
-  include Recurr::Event
+class Payment < ApplicationRecord
+  include Recurr::ActiveRecord::Event
 end
 ```
 
