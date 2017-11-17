@@ -23,6 +23,13 @@ Or install it yourself as:
 
 2. Run the migration with `rake db:migrate`.
 
+3. You can configure the behavior of Raterr:
+```ruby
+  Raterr.configure do |config|
+    config.store = :activerecord
+  end
+```
+
 3. Let's say you have an `Payment` model and you want it to be recurring.
 
 ```ruby
@@ -45,4 +52,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/wizard
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
