@@ -1,4 +1,5 @@
 module Recurr
-  class RecurringEvent < ::ApplicationRecord
+  class RecurringEvent < Recurr::INHERIT_FROM
+    self.table_name = 'recurring_events'
   end
 end
