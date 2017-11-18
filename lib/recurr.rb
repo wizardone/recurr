@@ -1,15 +1,19 @@
 require 'recurr/version'
 require 'active_record'
+require 'byebug'
 
 module Recurr
 
-  class Configuration
-    attr_reader :store, :event_table_name
+  def self.config
+    @config ||= Configuration.new
   end
 
   def self.configure
-    #memoize
-    yield Configuration.new
+    yield config
+  end
+
+  class Configuration
+    attr_accessor :store, :event_table_name
   end
 
   INHERIT_FROM = if defined?(::Rails) && ::Rails::VERSION > 5
