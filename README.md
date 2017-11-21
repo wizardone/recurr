@@ -26,7 +26,7 @@ Or install it yourself as:
 3. You can configure the behavior of Raterr:
 ```ruby
   Raterr.configure do |config|
-    config.store = :activerecord
+    config.adapter = :activerecord
     config.event_table_name = 'recurring_events'
   end
 ```

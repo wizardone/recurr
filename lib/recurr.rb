@@ -13,14 +13,18 @@ module Recurr
   end
 
   class Configuration
-    attr_accessor :store, :event_table_name
+    attr_accessor :adapter, :event_table_name
   end
 
-  INHERIT_FROM = if defined?(::Rails) && ::Rails::VERSION > 5
-                  ::ApplicationRecord
-                else
-                  ::ActiveRecord::Base
-                end
+  INHERIT_FROM = case config.adapter
+                 when :activerecord
+                    defined?(::Rails) && ::Rails::VERSION > 5 ? ::ApplicationRecord :
+                                                                ::ActiveRecord::Base
+                 when :sequel
+                    ::Sequel
+                  else
+                    ::ActiveRecord::Base
+                 end
 end
 
 require 'recurr/active_record/event'
