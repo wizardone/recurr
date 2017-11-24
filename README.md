@@ -31,11 +31,18 @@ Or install it yourself as:
   end
 ```
 
-3. Let's say you have an `Payment` model and you want it to be recurring.
+3. Let's say you have a `PaymentEvent` model and you want it to be recurring.
 
 ```ruby
-class Payment < ApplicationRecord
+class PaymentEvent < ApplicationRecord
   include Recurr::ActiveRecord::Event
+
+  # Perform event every day at 6 o'clock
+  recurr every: :day, at: 6
+  # Perform event every month on the 10th at 14 o'clock
+  recurr every: :month, on: 10, at: 14
+  # Perform event every new year at midnight
+  recurr every: :month, on: 31, if: month.is_a?('December')
 end
 ```
 
