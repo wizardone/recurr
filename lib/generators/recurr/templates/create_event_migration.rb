@@ -1,6 +1,6 @@
 class CreateRecurringEvents < ActiveRecord::Migration<%= migration_version %>
   def change
-    create_table :recurring_events do |t|
+    create_table :<%= migration_table %> do |t|
       t.string :name
       t.text :description
       t.integer :day

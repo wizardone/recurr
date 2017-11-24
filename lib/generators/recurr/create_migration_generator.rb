@@ -17,7 +17,7 @@ module Recurr
       end
 
       def migration_table
-        Recurr.config.event_table_name
+        Recurr.config.event_table_name&.to_sym || :recurring_events
       end
 
       desc %q{Copies the recurring event table migration into the migrations folder}
