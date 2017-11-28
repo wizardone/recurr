@@ -12,7 +12,10 @@ module Recurr
 
       class_methods do
         def recurr(**options)
-
+          @every = options[:every] || :day
+          @at = options[:at] || 20
+          @on = options[:on] || 13
+          @if = options[:if] || true
         end
       end
     end

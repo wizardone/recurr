@@ -42,7 +42,7 @@ class PaymentEvent < ApplicationRecord
   # Perform event every month on the 10th at 14 o'clock
   recurr every: :month, on: 10, at: 14
   # Perform event every new year at midnight
-  recurr every: :month, on: 31, if: month.is_a?('December')
+  recurr every: :month, on: 31, if: -> { month.is_a?('December') }
 end
 ```
 
