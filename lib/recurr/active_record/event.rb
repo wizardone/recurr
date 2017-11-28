@@ -16,6 +16,8 @@ module Recurr
           @at = options[:at] || 20
           @on = options[:on] || 13
           @if = options[:if] || true
+
+          recurring_events.create(name: self.class.to_s)
         end
       end
     end
