@@ -1,6 +1,13 @@
 postgresql:
-  adapter: postgresql
-  host: localhost
-  username: postgres
+  adapter: 'postgresql'
+  host: 'localhost'
+  username: 'postgres'
   password:
-  database: recurr_testing
+  database: 'recurr_testing'
+  encoding: 'utf-8'
+mysql:
+  adapter: 'mysql2'
+  host: 'localhost'
+  username: 'root'
+  password: ''
+  database: 'recurr_testing'
