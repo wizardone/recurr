@@ -1,0 +1,6 @@
+postgresql:
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  password:
+  database: recurr_testing

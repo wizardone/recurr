@@ -1,5 +1,5 @@
-require "bundler/setup"
-require "recurr"
+require 'bundler/setup'
+require 'recurr'
 
 # require all supporting files
 Dir[File.join(File.expand_path(__dir__), 'support', '**', '*.rb')].sort.each { |file| require file }
