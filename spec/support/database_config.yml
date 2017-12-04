@@ -5,6 +5,7 @@ postgresql:
   password:
   database: 'recurr_testing'
   encoding: 'utf-8'
+  pool: 5
 mysql:
   adapter: 'mysql2'
   host: 'localhost'
