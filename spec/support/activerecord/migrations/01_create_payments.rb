@@ -6,4 +6,8 @@ class CreatePaymentEvent < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+
+  def self.down
+    drop_table :payments
+  end
 end

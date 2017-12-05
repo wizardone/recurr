@@ -12,6 +12,7 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
+    [CreatePaymentEvent, CreateRecurringEvents].map(&:down)
     ActiveRecord::Base.connection.drop_database(config['database'])
   end
 end

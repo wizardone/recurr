@@ -11,4 +11,8 @@ class CreateRecurringEvents < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+
+  def self.down
+    drop_table :recurring_events
+  end
 end
