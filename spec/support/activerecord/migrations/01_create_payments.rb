@@ -1,4 +1,4 @@
-class CreatePaymentEvent# < ActiveRecord::Migration[5.0]
+class CreatePaymentEvent < ActiveRecord::Migration[5.0]
   def self.up
     create_table :payments do |t|
       t.string :email
