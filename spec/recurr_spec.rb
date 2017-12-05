@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Recurr do
 
-  #subject { Event.new }
+  subject { Payment.new }
 
   it "has a version number" do
     expect(Recurr::VERSION).not_to be nil
