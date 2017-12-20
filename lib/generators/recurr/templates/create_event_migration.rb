@@ -3,9 +3,9 @@ class CreateRecurringEvents < ActiveRecord::Migration<%= migration_version %>
     create_table :<%= migration_table %> do |t|
       t.string :name
       t.text :description
-      t.integer :day
-      t.integer :week
-      t.integer :month
+      t.string :scope
+      t.integer :occurence
+      t.integer :hour
       t.boolean :reminder
 
       t.timestamps

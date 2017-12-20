@@ -16,6 +16,7 @@ module Recurr
     attr_accessor :adapter,
                   :event_table_name,
                   :background_adapter
+
     def initialize
       @adapter = :active_record
       @event_table_name = 'recurring_events'
