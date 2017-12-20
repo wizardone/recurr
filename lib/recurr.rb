@@ -13,7 +13,14 @@ module Recurr
   end
 
   class Configuration
-    attr_accessor :adapter, :event_table_name
+    attr_accessor :adapter,
+                  :event_table_name,
+                  :background_adapter
+    def initialize
+      @adapter = :active_record
+      @event_table_name = 'recurring_events'
+      @background_adapter = :active_job
+    end
   end
 
   INHERIT_FROM = case config.adapter
