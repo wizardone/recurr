@@ -12,6 +12,8 @@ module Recurr
 
       class_methods do
         def recurr(**options)
+          raise ArgumentError.new('You must supply a :scope option') unless options[:scope]
+
           scope = options[:scope] || :daily
           day = options[:day] || 1
           hour = options[:hour] || 13

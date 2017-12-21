@@ -25,15 +25,15 @@ module Recurr
   end
 
   INHERIT_FROM = case config.adapter
-                 when :activerecord
-                    defined?(::Rails) && ::Rails::VERSION > 5 ? ::ApplicationRecord :
-                                                                ::ActiveRecord::Base
+                 when :active_record
+                   defined?(::Rails) && ::Rails::VERSION > 5 ? ::ApplicationRecord :
+                                                               ::ActiveRecord::Base
                  when :sequel
-                    ::Sequel
+                   ::Sequel
                   else
-                    ::ActiveRecord::Base
+                   ::ActiveRecord::Base
                  end
-  FREQUENCY = %w(daily weekly monthly).freeze
+  FREQUENCY = %w[daily weekly monthly].freeze
 end
 
 require 'recurr/active_record/event'
