@@ -37,12 +37,14 @@ Or install it yourself as:
 class PaymentEvent < ApplicationRecord
   include Recurr::ActiveRecord::Event
 
-  # Perform event every day at 6 o'clock
-  recurr every: :day, at: 6
+  # Perform event every day at 18 o'clock
+  recurr scope: :daily, hour: 18
+  #Perform every week on tuesday(day 2) at 13 o'clock
+  recurr scope: :weekly, day: 2, hour: 13
   # Perform event every month on the 10th at 14 o'clock
-  recurr every: :month, on: 10, at: 14
+  recurr scope: :monthly, on: 10, hour: 14
   # Perform event every new year at midnight
-  recurr every: :month, on: 31, if: -> { month.is_a?('December') }
+  recurr scope: :monthly, on: 31, if: -> { month.is_a?('December') }
 end
 ```
 

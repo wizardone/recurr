@@ -5,6 +5,8 @@ class CreateRecurringEvents < ActiveRecord::Migration[5.0]
       t.text :description
       t.string :scope
       t.integer :occurence
+      t.integer :day
+      t.integer :on
       t.integer :hour
       t.boolean :reminder
 

@@ -33,6 +33,7 @@ module Recurr
                   else
                     ::ActiveRecord::Base
                  end
+  FREQUENCY = %w(daily weekly monthly).freeze
 end
 
 require 'recurr/active_record/event'

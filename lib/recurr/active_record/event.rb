@@ -12,16 +12,19 @@ module Recurr
 
       class_methods do
         def recurr(**options)
-          every = options[:scope] || :daily
-          at = options[:at] || 1
+          scope = options[:scope] || :daily
+          day = options[:day] || 1
           hour = options[:hour] || 13
+          on = options[:on] || 1
           _if = options[:if] || true
-          reminder = options[:remainder] || false
+          reminder = options[:reminder] || false
 
           Recurr::RecurringEvent.create(name: self.to_s,
                                         description: '',
+                                        scope: scope,
+                                        day: day,
                                         hour: hour,
-                                        occurence: at,
+                                        on: on,
                                         reminder: reminder)
         end
       end
