@@ -20,7 +20,7 @@ module Recurr
         Recurr.config.event_table_name&.to_sym || :recurring_events
       end
 
-      desc %q{Copies the recurring event table migration into the migrations folder}
+      desc %q(Copies the recurring event table migration into the migrations folder)
       def create_migration_file
         migration_template "create_event_migration.rb", "db/migrate/create_recurring_events.rb"
       end

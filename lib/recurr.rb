@@ -3,7 +3,6 @@ require 'active_record'
 require 'byebug'
 
 module Recurr
-
   def self.config
     @config ||= Configuration.new
   end
@@ -12,6 +11,7 @@ module Recurr
     yield config
   end
 
+  # Configuration class
   class Configuration
     attr_accessor :adapter,
                   :event_table_name,
@@ -30,7 +30,7 @@ module Recurr
                                                                ::ActiveRecord::Base
                  when :sequel
                    ::Sequel
-                  else
+                 else
                    ::ActiveRecord::Base
                  end
   FREQUENCY = %w[daily weekly monthly].freeze

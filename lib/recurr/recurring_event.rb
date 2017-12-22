@@ -1,4 +1,5 @@
 module Recurr
+  # Persistense class to store the events information
   class RecurringEvent < Recurr::INHERIT_FROM
     self.table_name = Recurr.config.event_table_name || :recurring_events
 
@@ -16,7 +17,7 @@ module Recurr
 
     end
 
-    def occurences(start:, end:)# or range?
+    def occurences(start:, end:) # or range?
 
     end
   end

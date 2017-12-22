@@ -7,13 +7,13 @@ module Recurr
 
         included do
           has_many :recurring_events,
-                    class_name: 'Recurr::RecurringEvent',
-                    dependent: :delete_all
+                   class_name: 'Recurr::RecurringEvent',
+                   dependent: :delete_all
         end
 
         class_methods do
           def recurr(**options)
-            raise ArgumentError.new('You must supply a :scope option') unless options[:scope]
+            raise ArgumentError, 'You must supply a :scope option' unless options[:scope]
 
             scope = options[:scope] || :daily
             day = options[:day] || 1
@@ -22,7 +22,7 @@ module Recurr
             _if = options[:if] || true
             reminder = options[:reminder] || false
 
-            Recurr::RecurringEvent.create(name: self.to_s,
+            Recurr::RecurringEvent.create(name: to_s,
                                           description: '',
                                           scope: scope,
                                           day: day,
