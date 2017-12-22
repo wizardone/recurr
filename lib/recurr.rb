@@ -36,5 +36,5 @@ module Recurr
   FREQUENCY = %w[daily weekly monthly].freeze
 end
 
-require 'recurr/active_record/event'
+require 'recurr/adapters/active_record/event'
 require 'recurr/recurring_event'
