@@ -19,16 +19,17 @@ module Recurr
             day = options[:day] || 1
             hour = options[:hour] || 13
             on = options[:on] || 1
-            _if = options[:if] || true
             reminder = options[:reminder] || false
 
-            Recurr::RecurringEvent.create(name: to_s,
-                                          description: '',
-                                          scope: scope,
-                                          day: day,
-                                          hour: hour,
-                                          on: on,
-                                          reminder: reminder)
+            if options[:if].nil? || (options.key?(:if) && options[:if].call)
+              Recurr::RecurringEvent.create(name: to_s,
+                                            description: '',
+                                            scope: scope,
+                                            day: day,
+                                            hour: hour,
+                                            on: on,
+                                            reminder: reminder)
+            end
           end
         end
       end

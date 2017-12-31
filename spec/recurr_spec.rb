@@ -58,5 +58,11 @@ RSpec.describe Recurr do
       expect(event.hour).to eq(12)
       expect(event.reminder).to be true
     end
+
+    it 'creates a new recurring event if the guard clause passes' do
+      expect {
+        Payment.recurr(scope: :daily, day: 2, hour: 12, reminder: true, if: -> { false })
+      }.to_not change(Recurr::RecurringEvent, :count)
+    end
   end
 end
