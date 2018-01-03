@@ -28,10 +28,4 @@ RSpec.describe Recurr::RecurringEvent do
       expect(subject.passed?).to be_nil
     end
   end
-
-  describe "#execute" do
-    it "executes the recurring event" do
-      expect(subject.execute).to be_nil
-    end
-  end
 end

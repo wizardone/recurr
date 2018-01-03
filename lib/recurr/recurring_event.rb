@@ -21,8 +21,5 @@ module Recurr
 
     end
 
-    def execute
-      
-    end
   end
 end

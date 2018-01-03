@@ -21,10 +21,6 @@ RSpec.describe Recurr do
   end
 
   context 'included from recurr' do
-    it 'includes the recurring events association' do
-      expect(subject.recurring_events).to eq([])
-    end
-
     it 'raises an error if not scope option is provided' do
       expect {
         Payment.recurr

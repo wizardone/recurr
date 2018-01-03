@@ -6,9 +6,9 @@ module Recurr
         extend ActiveSupport::Concern
 
         included do
-          has_many :recurring_events,
-                   class_name: 'Recurr::RecurringEvent',
-                   dependent: :delete_all
+          #has_many :recurring_events,
+          #         class_name: 'Recurr::RecurringEvent',
+          #         dependent: :delete_all
         end
 
         class_methods do
