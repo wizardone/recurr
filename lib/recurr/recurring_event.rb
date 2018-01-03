@@ -20,5 +20,9 @@ module Recurr
     def occurences(start:, end:) # or range?
 
     end
+
+    def execute
+      
+    end
   end
 end

@@ -34,7 +34,7 @@ Or install it yourself as:
 3. Let's say you have a `PaymentEvent` model and you want it to be recurring.
 
 ```ruby
-class PaymentEvent < ApplicationRecord
+class PaymentEvent < ApplicationJob
   include Recurr::ActiveRecord::Event
 
   # Perform event every day at 18 o'clock
@@ -45,6 +45,10 @@ class PaymentEvent < ApplicationRecord
   recurr scope: :monthly, on: 10, hour: 14
   # Perform event every new year at midnight
   recurr scope: :monthly, on: 31, if: -> { month.is_a?('December') }
+
+  def perform(*args)
+    # Perform something stupid...
+  end
 end
 ```
 
