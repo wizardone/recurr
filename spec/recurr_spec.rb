@@ -4,6 +4,8 @@ RSpec.describe Recurr do
 
   subject { Payment.new }
 
+  before { Recurr::RecurringEvent.destroy_all }
+
   it 'has a version number' do
     expect(Recurr::VERSION).not_to be nil
   end
@@ -59,6 +61,14 @@ RSpec.describe Recurr do
       expect {
         Payment.recurr(scope: :daily, day: 2, hour: 12, reminder: true, if: -> { false })
       }.to_not change(Recurr::RecurringEvent, :count)
+    end
+
+    describe '.retrieve_events' do
+      it 'retrieves all recurring events' do
+        2.times { Payment.recurr(scope: :daily) }
+
+        expect(Payment.retrieve_events.length).to eq(2)
+      end
     end
   end
 end

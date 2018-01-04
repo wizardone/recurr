@@ -5,12 +5,6 @@ module Recurr
       module Event
         extend ActiveSupport::Concern
 
-        included do
-          #has_many :recurring_events,
-          #         class_name: 'Recurr::RecurringEvent',
-          #         dependent: :delete_all
-        end
-
         class_methods do
           def recurr(**options)
             raise ArgumentError, 'You must supply a :scope option' unless options[:scope]
@@ -30,6 +24,10 @@ module Recurr
                                             on: on,
                                             reminder: reminder)
             end
+          end
+
+          def retrieve_events
+            Recurr::RecurringEvent.where(name: to_s)
           end
         end
       end
