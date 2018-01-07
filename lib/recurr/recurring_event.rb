@@ -5,6 +5,9 @@ module Recurr
 
     validates :scope, inclusion: { in: Recurr::FREQUENCY }
 
+    scope :future, -> { where("created_at > #{Time.now}") }
+    scope :past, -> { where("created_at < #{Time.now}") }
+
     def passed?
 
     end
