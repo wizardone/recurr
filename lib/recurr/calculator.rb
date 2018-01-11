@@ -14,7 +14,14 @@ module Recurr
     end
 
     def calculate
+      case recurring_event.scope
+      when :daily
 
+      when :weekly
+
+      when :monthly
+
+      end
     end
   end
 end

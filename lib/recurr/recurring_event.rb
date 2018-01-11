@@ -1,3 +1,4 @@
+require_relative 'calculator'
 module Recurr
   # Persistense class to store the events information
   class RecurringEvent < Recurr::INHERIT_FROM

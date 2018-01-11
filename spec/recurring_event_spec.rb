@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Recurr::RecurringEvent do
+
   subject { described_class.new }
 
   describe "validations" do
@@ -8,6 +9,20 @@ RSpec.describe Recurr::RecurringEvent do
       subject.save
 
       expect(subject.errors).to_not be_empty
+    end
+  end
+
+  describe "#calculate" do
+
+    subject { described_class.new(scope: :daily, hour: 13) }
+
+    it 'invokes the calculator' do
+      expect(Recurr::Calculator).to receive(:call).with(subject)
+
+      subject.calculate
+    end
+    it 'calculates the next daily event' do
+      expect(subject.calculate).to eq ''
     end
   end
 
