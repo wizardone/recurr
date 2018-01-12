@@ -31,41 +31,41 @@ RSpec.describe Recurr do
 
     it 'creates a new recurring event' do
       expect {
-        Payment.recurr(scope: :daily)
+        Payment.recurr(:daily)
       }.to change(Recurr::RecurringEvent, :count).by(1)
     end
 
     it 'create a new recurring event with default options' do
-      Payment.recurr(scope: :daily)
+      Payment.recurr(:daily)
       event = Recurr::RecurringEvent.last
 
       expect(event.name).to eq('Payment')
       expect(event.scope).to eq('daily')
-      expect(event.day).to eq(1)
-      expect(event.hour).to eq(13)
+      expect(event.on).to eq(1)
+      expect(event.at).to eq(13)
       expect(event.reminder).to be false
     end
 
     it 'creates a new recurring event with custom options' do
-      Payment.recurr(scope: :daily, day: 2, hour: 12, reminder: true)
+      Payment.recurr(:daily, on: 2, at: 12, reminder: true)
       event = Recurr::RecurringEvent.last
 
       expect(event.name).to eq('Payment')
       expect(event.scope).to eq('daily')
-      expect(event.day).to eq(2)
-      expect(event.hour).to eq(12)
+      expect(event.on).to eq(2)
+      expect(event.at).to eq(12)
       expect(event.reminder).to be true
     end
 
     it 'creates a new recurring event if the guard clause passes' do
       expect {
-        Payment.recurr(scope: :daily, day: 2, hour: 12, reminder: true, if: -> { false })
+        Payment.recurr(:daily, on: 2, at: 12, reminder: true, if: -> { false })
       }.to_not change(Recurr::RecurringEvent, :count)
     end
 
     describe '.retrieve_events' do
       it 'retrieves all recurring events' do
-        2.times { Payment.recurr(scope: :daily) }
+        2.times { Payment.recurr(:daily) }
 
         expect(Payment.retrieve_events.length).to eq(2)
       end

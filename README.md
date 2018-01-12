@@ -31,20 +31,21 @@ Or install it yourself as:
   end
 ```
 
-3. Let's say you have a `PaymentEvent` model and you want it to be recurring.
+3. Let's say you have a `PaymentEvent` job and you want it to be recurring.
 
 ```ruby
 class PaymentEvent < ApplicationJob
-  include Recurr::ActiveRecord::Event
+  include Recurr::Adapters::ActiveRecord
 
+  recurr :daily
   # Perform event every day at 18 o'clock
-  recurr scope: :daily, hour: 18
+  recurr :daily, at: 18
   #Perform every week on tuesday(day 2) at 13 o'clock
-  recurr scope: :weekly, day: 2, hour: 13
+  recurr :weekly, on: 2, at: 13
   # Perform event every month on the 10th at 14 o'clock
-  recurr scope: :monthly, on: 10, hour: 14
+  recurr :monthly, on: 10, at: 14
   # Perform event every new year at midnight
-  recurr scope: :monthly, on: 31, if: -> { month.is_a?('December') }
+  recurr :monthly, on: 31, if: -> { month.is_a?('December') }
 
   def perform(*args)
     # Perform something stupid...

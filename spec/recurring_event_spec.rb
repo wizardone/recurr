@@ -14,7 +14,7 @@ RSpec.describe Recurr::RecurringEvent do
 
   describe "#calculate" do
 
-    subject { described_class.new(scope: :daily, hour: 13) }
+    subject { described_class.new(scope: :daily, at: 13) }
 
     it 'invokes the calculator' do
       expect(Recurr::Calculator).to receive(:call).with(subject)
