@@ -43,5 +43,18 @@ module Recurr
 
     end
 
+    private
+
+    def event
+      case scope
+      when :daily
+        Event::Daily.new
+      when :weekly
+        Event::Weekly.new
+      when :monthly
+        Event::Monthly.new
+      end
+    end
+
   end
 end
