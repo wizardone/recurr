@@ -26,6 +26,12 @@ RSpec.describe Recurr::RecurringEvent do
     end
   end
 
+  describe "#current" do
+    it 'gets the current event execution date' do
+      expect(subject.current).to eq ''
+    end
+  end
+
   describe "#next" do
     it "gets the next occurence of the event" do
       expect(subject.next).to be_nil

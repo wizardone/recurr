@@ -31,12 +31,12 @@ RSpec.describe Recurr do
 
     it 'creates a new recurring event' do
       expect {
-        Payment.recurr(:daily)
+        Payment.recurr(:daily, at: 13)
       }.to change(Recurr::RecurringEvent, :count).by(1)
     end
 
     it 'create a new recurring event with default options' do
-      Payment.recurr(:daily)
+      Payment.recurr(:daily, at: 13)
       event = Recurr::RecurringEvent.last
 
       expect(event.name).to eq('Payment')
@@ -63,11 +63,13 @@ RSpec.describe Recurr do
       }.to_not change(Recurr::RecurringEvent, :count)
     end
 
-    describe '.retrieve_events' do
-      it 'retrieves all recurring events' do
-        2.times { Payment.recurr(:daily) }
+    describe '.event' do
+      it 'retrieves the current event object' do
+        Payment.recurr(:daily, at: 13)
+        event = Recurr::RecurringEvent.last
 
-        expect(Payment.retrieve_events.length).to eq(2)
+        expect(Payment.event).to eq(event)
+        expect(Payment.event.name).to eq('Payment')
       end
     end
   end

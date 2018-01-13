@@ -23,6 +23,10 @@ module Recurr
       Recurr::Calculator.call(self)
     end
 
+    def current
+      Date.parse(Date.today.to_s)
+    end
+
     def passed?
 
     end

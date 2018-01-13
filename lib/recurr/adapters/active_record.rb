@@ -6,7 +6,7 @@ module Recurr
 
       class_methods do
         def recurr(scope, **options)
-          raise ArgumentError, 'You must supply a :scope option' unless scope
+          validate_arguments(scope, options)
 
           day = options[:day] || 1
           at = options[:at] || 13
@@ -23,8 +23,17 @@ module Recurr
             end
           end
 
-          def retrieve_events
-            Recurr::RecurringEvent.where(name: to_s)
+          def event
+            Recurr::RecurringEvent.find_by(name: to_s)
+          end
+
+          private
+
+          def validate_arguments(scope, options)
+            raise ArgumentError, 'You must supply a :scope option' unless scope
+            unless [options[:on], options[:at]].any?(&:present?)
+              raise ArgumentError, 'You must supply :on or :at options'
+            end
           end
         end
       end
