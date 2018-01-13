@@ -1,6 +1,6 @@
 module Recurr
   module Event
-    class Daily
+    class Daily < Base
 
     end
   end

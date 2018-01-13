@@ -1,6 +1,6 @@
 module Recurr
   module Event
-    class Monthly
+    class Monthly < Base
 
     end
   end
