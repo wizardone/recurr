@@ -38,6 +38,7 @@ end
 
 require 'recurr/adapters/active_record'
 require 'recurr/recurring_event'
+require 'recurr/events/base'
 require 'recurr/events/daily'
 require 'recurr/events/weekly'
 require 'recurr/events/monthly'

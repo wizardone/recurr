@@ -1,5 +1,5 @@
 module Recurr
-  module Event
+  module Events
     class Weekly < Base
 
     end

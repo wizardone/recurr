@@ -24,7 +24,7 @@ module Recurr
     end
 
     def current
-      Date.parse(Date.today.to_s)
+      recurring_event
     end
 
     def passed?
@@ -45,14 +45,15 @@ module Recurr
 
     private
 
-    def event
-      case scope
+    def recurring_event
+      options = { on: on, at: at }
+      case scope.to_sym
       when :daily
-        Event::Daily.new
+        Recurr::Events::Daily.new(options)
       when :weekly
-        Event::Weekly.new
+        Recurr::Events::Weekly.new(options)
       when :monthly
-        Event::Monthly.new
+        Recurr::Events::Monthly.new(options)
       end
     end
 

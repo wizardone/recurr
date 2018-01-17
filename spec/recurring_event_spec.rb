@@ -27,8 +27,15 @@ RSpec.describe Recurr::RecurringEvent do
   end
 
   describe "#current" do
+
+    subject { described_class.new(scope: :daily, at: 13) }
+
     it 'gets the current event execution date' do
-      expect(subject.current).to eq ''
+      #event = instance_double(Recurr::Events::Daily)
+      #expect(event).to receive(:current)
+      expect(Recurr::Events::Daily).to receive(:new)
+
+      subject.current
     end
   end
 
