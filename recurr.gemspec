@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "activerecord", "~> 5.0"
   spec.add_development_dependency "rails", "~> 5.0"
+  spec.add_development_dependency "timecop"
   spec.add_development_dependency "pg"
   spec.add_development_dependency "mysql2"
 end
