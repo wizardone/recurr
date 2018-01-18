@@ -24,7 +24,7 @@ module Recurr
     end
 
     def current
-      recurring_event
+      recurring_event.current
     end
 
     def passed?
