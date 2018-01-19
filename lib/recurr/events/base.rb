@@ -12,6 +12,10 @@ module Recurr
       def current
         raise NotImplementedError
       end
+
+      def next
+        raise NotImplementedError
+      end
     end
   end
 end
