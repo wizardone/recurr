@@ -9,7 +9,7 @@ RSpec.describe Recurr::Events::Base do
       base_event = described_class.new(options)
 
       expect(base_event.options).to eq(options)
-      expect(base_event.starts).to eq(options[:starts])
+      expect(base_event.starts).to eq(options[:starts].to_time)
     end
   end
 

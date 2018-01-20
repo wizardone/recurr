@@ -6,7 +6,7 @@ module Recurr
 
       def initialize(options)
         @options = options
-        @starts = options[:starts] || Time.current
+        @starts = options[:starts]&.to_time || Time.current
       end
 
       def current

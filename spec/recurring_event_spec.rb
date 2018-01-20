@@ -22,7 +22,7 @@ RSpec.describe Recurr::RecurringEvent do
       subject.calculate
     end
     it 'calculates the next daily event' do
-      expect(subject.calculate).to eq ''
+      expect(subject.calculate).to be_nil
     end
   end
 
