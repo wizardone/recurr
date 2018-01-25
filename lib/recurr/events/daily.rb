@@ -29,16 +29,17 @@ module Recurr
 
       def calculate_next_week_day(day)
         return 1 if day == 6
-        return day + 1
+        day + 1
       end
 
       def month_end?(start_time)
         day_of_month = start_time.mday
         month_of_year = start_time.month
 
-        return true if day_of_month == 31 && %w(1 3 5 7 8 10 12).map(&:to_i).include?(month_of_year)
-        return true if day_of_month == 30 && %w(4 6 9 11).include?(month_of_year)
-        return false
+        return true if day_of_month == 31 && %w[1 3 5 7 8 10 12].map(&:to_i).include?(month_of_year)
+        return true if day_of_month == 30 && %w[4 6 9 11].map(&:to_i).include?(month_of_year)
+        return true if (day_of_month == 28 || day_of_month == 29) && month_of_year == 2
+        false
       end
     end
   end

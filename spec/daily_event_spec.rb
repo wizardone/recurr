@@ -39,6 +39,15 @@ RSpec.describe Recurr::Events::Daily do
       end
     end
 
+    it 'gets the current recurring event for february' do
+      Timecop.freeze(Time.local(2018, 2, 28, 20)) do
+        event = described_class.new({ at: 13 })
+        expected_time = Time.new(2018, 3, 1, event.options[:at])
+
+        expect(event.current).to eq(expected_time)
+      end
+    end
+
     it 'gets the current recurring event for a new year' do
       Timecop.freeze(Time.local(2018, 12, 31, 20)) do
         event = described_class.new({ at: 13 })
