@@ -1,10 +1,44 @@
 module Recurr
   module Events
+
+    YearCalculation = Struct.new(:time) do
+      def end?
+        time.yday == 365
+      end
+    end
+
+    MonthCalculation = Struct.new(:time) do
+      def end?
+        day_of_month = time.mday
+        month_of_year = time.month
+
+        return true if day_of_month == 31 && big_months.map(&:to_i).include?(month_of_year)
+        return true if day_of_month == 30 && small_months.map(&:to_i).include?(month_of_year)
+        return true if (day_of_month == 28 || day_of_month == 29) && month_of_year == february
+        false
+      end
+
+      private
+
+      def big_months
+        %w[1 3 5 7 8 10 12]
+      end
+
+      def small_months
+        %w[4 6 9 11]
+      end
+
+      def february
+        2
+      end
+    end
+
     class Daily < Base
 
       def current
         at = options[:at]
         start_time = Time.new(starts.year, starts.month, starts.day)
+        start_year = starts.year
         start_day = starts.wday
         start_month = starts.month
         start_day = calculate_next_week_day(start_day) if starts.hour > at
@@ -14,7 +48,13 @@ module Recurr
           start_day = 1
         end
 
-        Time.new(start_time.year, start_month, start_day, at)
+        if year_end?(start_time)
+          start_year += 1
+          start_month = 1
+          start_day = 1
+        end
+
+        Time.new(start_year, start_month, start_day, at)
       end
 
       def next
@@ -33,13 +73,11 @@ module Recurr
       end
 
       def month_end?(start_time)
-        day_of_month = start_time.mday
-        month_of_year = start_time.month
+        MonthCalculation.new(start_time).end?
+      end
 
-        return true if day_of_month == 31 && %w[1 3 5 7 8 10 12].map(&:to_i).include?(month_of_year)
-        return true if day_of_month == 30 && %w[4 6 9 11].map(&:to_i).include?(month_of_year)
-        return true if (day_of_month == 28 || day_of_month == 29) && month_of_year == 2
-        false
+      def year_end?(start_time)
+        YearCalculation.new(start_time).end?
       end
     end
   end
