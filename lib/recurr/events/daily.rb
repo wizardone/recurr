@@ -3,7 +3,7 @@ module Recurr
 
     YearCalculation = Struct.new(:time) do
       def end?
-        time.yday == 365
+        time.yday == 365 || time.yday == 366
       end
     end
 
@@ -12,8 +12,8 @@ module Recurr
         day_of_month = time.mday
         month_of_year = time.month
 
-        return true if day_of_month == 31 && big_months.map(&:to_i).include?(month_of_year)
-        return true if day_of_month == 30 && small_months.map(&:to_i).include?(month_of_year)
+        return true if day_of_month == 31 && big_months.include?(month_of_year)
+        return true if day_of_month == 30 && small_months.include?(month_of_year)
         return true if (day_of_month == 28 || day_of_month == 29) && month_of_year == february
         false
       end
@@ -21,11 +21,11 @@ module Recurr
       private
 
       def big_months
-        %w[1 3 5 7 8 10 12]
+        [1, 3, 5, 7, 8, 10, 12]
       end
 
       def small_months
-        %w[4 6 9 11]
+        [4, 6, 9, 11]
       end
 
       def february
@@ -38,9 +38,7 @@ module Recurr
       def current
         at = options[:at]
         start_time = Time.new(starts.year, starts.month, starts.day)
-        start_year = starts.year
-        start_day = starts.wday
-        start_month = starts.month
+        start_year, start_month, start_day = starts.year, starts.month, starts.wday
         start_day = calculate_next_week_day(start_day) if starts.hour > at
 
         if month_end?(start_time)
