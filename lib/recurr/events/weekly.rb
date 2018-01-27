@@ -3,11 +3,12 @@ module Recurr
     class Weekly < Base
       def current
         at, on = options[:at], options[:on]
-        day = Time.new.wday
-        on += 7 if on < day
-        current_time = Time.new
+        start_time = Time.new(starts.year, starts.month, starts.wday)
+        start_year = start_time.year
+        start_month = start_time.month
+        start_day = on
 
-        Time.new(current_time.year, current_time.month, on, at)
+        Time.new(start_year, start_month, start_day, at)
       end
 
       def next
