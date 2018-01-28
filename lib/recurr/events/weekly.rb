@@ -6,7 +6,14 @@ module Recurr
         start_time = Time.new(starts.year, starts.month, starts.wday)
         start_year = start_time.year
         start_month = start_time.month
-        start_day = on
+        start_day = start_time.wday
+
+        if start_day > on
+          diff = start_day - on
+          start_day = start_day + 7 - diff
+        else
+          start_day = on
+        end
 
         Time.new(start_year, start_month, start_day, at)
       end

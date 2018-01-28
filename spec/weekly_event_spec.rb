@@ -14,8 +14,8 @@ RSpec.describe Recurr::Events::Weekly do
 
     it 'gets the current recurring event for the next week' do
       Timecop.freeze(Time.local(2018, 1, 5)) do
-        event = described_class.new({ on: 2, at: 13 })
-        expected = Time.new(2018, 1, 5 + 7, 13)
+        event = described_class.new({ on: 3, at: 13 })
+        expected = Time.new(2018, 1, 10, 13)
 
         expect(event.current).to eq(expected)
       end
@@ -24,17 +24,12 @@ RSpec.describe Recurr::Events::Weekly do
 
   describe '#next' do
     it 'gets the next recurring event' do
-      #event = described_class.new({ on: 5, at: 20 })
-      #expected_time = Time.new
+      Timecop.freeze(Time.local(2018, 1, 4)) do
+        event = described_class.new({ on: 5, at: 20 })
+        expected_time = Time.new(2018, 1, 12, 20)
 
-      #expect(event.next).to eq(
-      #  Time.new(
-      #    expected_time.year,
-      #    expected_time.month,
-      #    event.options[:on] + 7,
-      #    event.options[:at]
-      #  )
-      #)
+        expect(event.next).to eq(expected_time)
+      end
     end
   end
 end
