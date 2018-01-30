@@ -13,8 +13,10 @@ module Recurr
                       start_day + diff
                     end
 
-        #if next_month?(start_year, start_month, start_day)
-        #end
+        if next_month?(start_year, start_month, new_start_day)
+          # why is this not working with the reader??
+          @start_month += 1
+        end
 
         Time.new(start_year, start_month, new_start_day, at)
       end

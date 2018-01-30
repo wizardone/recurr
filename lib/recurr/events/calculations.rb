@@ -4,14 +4,18 @@ YearCalculation = Struct.new(:time) do
   end
 end
 
-MonthCalculation = Struct.new(:time) do
+MonthCalculation = Struct.new(:year, :month, :day) do
   def end?
-    day_of_month = time.mday
-    month_of_year = time.month
+    return true if day == 31 && big_months.include?(month)
+    return true if day == 30 && small_months.include?(month)
+    return true if (day == 28 || day == 29) && month == february
+    false
+  end
 
-    return true if day_of_month == 31 && big_months.include?(month_of_year)
-    return true if day_of_month == 30 && small_months.include?(month_of_year)
-    return true if (day_of_month == 28 || day_of_month == 29) && month_of_year == february
+  def next_month?
+    return true if day > 31 && big_months.include?(month)
+    return true if day > 30 && small_months.include?(month)
+    return true if (day > 28 || day > 29) && month == february
     false
   end
 

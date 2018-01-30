@@ -38,7 +38,11 @@ module Recurr
       end
 
       def month_end?(start_time)
-        MonthCalculation.new(start_time).end?
+        MonthCalculation.new(
+          start_time.year,
+          start_time.month,
+          start_time.day
+        ).end?
       end
 
       def year_end?(start_time)
