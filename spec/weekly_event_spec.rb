@@ -12,10 +12,19 @@ RSpec.describe Recurr::Events::Weekly do
       end
     end
 
-    it 'gets the current recurring event for the same week' do
+    it 'gets the current recurring event for the same week for middle of month' do
       Timecop.freeze(Time.local(2018, 1, 10)) do
         event = described_class.new({ on: 5, at: 13 })
         expected = Time.new(2018, 1, 12, 13)
+
+        expect(event.current).to eq(expected)
+      end
+    end
+
+    it 'gets the current recurring event for the same week for end of month' do
+      Timecop.freeze(Time.local(2018, 1, 22)) do
+        event = described_class.new({ on: 4, at: 13 })
+        expected = Time.new(2018, 1, 25, 13)
 
         expect(event.current).to eq(expected)
       end
