@@ -2,11 +2,10 @@ module Recurr
   module Events
     class Base
 
-      attr_reader :options,
-                  :starts,
-                  :start_year,
-                  :start_month,
-                  :start_day
+      attr_reader :options, :starts
+      attr_accessor :start_year,
+                    :start_month,
+                    :start_day
 
       def initialize(options)
         @options = options

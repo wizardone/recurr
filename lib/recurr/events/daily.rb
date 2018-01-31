@@ -4,22 +4,20 @@ module Recurr
 
       def current
         at = options[:at]
-        start_time = Time.new(starts.year, starts.month, starts.day)
-        start_year, start_month, start_day = starts.year, starts.month, starts.wday
-        start_day = calculate_next_week_day(start_day) if starts.hour > at
+        @start_day = calculate_next_week_day(@start_day) if starts.hour > at
 
-        if month_end?(start_time)
-          start_month += 1
-          start_day = 1
+        if month_end?(starts)
+          @start_month += 1
+          @start_day = 1
         end
 
-        if year_end?(start_time)
-          start_year += 1
-          start_month = 1
-          start_day = 1
+        if year_end?(starts)
+          @start_year += 1
+          @start_month = 1
+          @start_day = 1
         end
 
-        Time.new(start_year, start_month, start_day, at)
+        Time.new(@start_year, @start_month, @start_day, at)
       end
 
       def next
