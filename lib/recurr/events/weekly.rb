@@ -14,8 +14,8 @@ module Recurr
                     end
 
         if next_month?(@start_year, @start_month, @start_day)
-          # why is this not working with the reader??
           @start_month += 1
+          @start_day += 7
         end
 
         Time.new(@start_year, @start_month, @start_day, at)
