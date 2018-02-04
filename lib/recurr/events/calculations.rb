@@ -13,7 +13,7 @@ MonthCalculation = Struct.new(:year, :month, :day) do
   end
 
   def next_month?
-    return true if day > 31 && big_months.include?(month)
+    return true if day >= 31 && big_months.include?(month)
     return true if day > 30 && small_months.include?(month)
     return true if (day > 28 || day > 29) && month == february
     false

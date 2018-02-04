@@ -40,7 +40,7 @@ RSpec.describe Recurr::Events::Weekly do
     end
 
     it 'gets the current recurring event if next week is in next month' do
-      Timecop.freeze(Time.local(2018, 1, 30)) do
+      Timecop.freeze(Time.local(2018, 1, 31)) do
         event = described_class.new({ on: 1, at: 13 })
         expected = Time.new(2018, 2, 5, 13)
 
