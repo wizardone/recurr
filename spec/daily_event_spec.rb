@@ -33,7 +33,7 @@ RSpec.describe Recurr::Events::Daily do
     it 'gets the current recurring event for a new month' do
       Timecop.freeze(Time.local(2018, 1, 31, 20)) do
         event = described_class.new({ at: 13 })
-        expected_time = Time.new(2018, 2, 1, event.options[:at])
+        expected_time = Time.new(2018, 2, 1, 13)
 
         expect(event.current).to eq(expected_time)
       end
