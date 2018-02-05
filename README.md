@@ -1,4 +1,6 @@
 # Recurr
+[![Build Status](https://travis-ci.org/wizardone/recurr.svg?branch=master)](https://travis-ci.org/wizardone/recurr)
+
 Recurr allows you to manage recurring events in a Rails application
 (ouch!)
 
