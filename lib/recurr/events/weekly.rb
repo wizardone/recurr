@@ -19,11 +19,7 @@ module Recurr
       end
 
       def next
-        at, on = options[:at], options[:on]
-        next_day = on + 7
-        current_time = Time.new
-
-        Time.new(current_time.year, current_time.month, next_day, at)
+        current + 7 * 24 * 3600
       end
     end
   end

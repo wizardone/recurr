@@ -16,11 +16,7 @@ module Recurr
       end
 
       def next
-        at = options[:at]
-        next_day = calculate_next_week_day(current.wday)
-        current_time = Time.new
-
-        Time.new(current_time.year, current_time.month, next_day, at)
+        current + 24 * 3600
       end
     end
   end
