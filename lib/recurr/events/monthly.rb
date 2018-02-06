@@ -8,7 +8,9 @@ module Recurr
         diff = if start_day < on
                  on - start_day
                else
-
+                 # number of days in the month - start_day
+                 raw_diff = days_in_month - start_day
+                 raw_diff + on
                end
 
         Time.new(start_year, start_month, start_day, at) + diff * 24 * 3600
@@ -16,6 +18,12 @@ module Recurr
 
       def next
         current + 7 * 24 * 3600
+      end
+
+      private
+
+      def days_in_month
+        Date.new(start_year, start_month, -1).day
       end
     end
   end

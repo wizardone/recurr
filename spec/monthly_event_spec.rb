@@ -33,9 +33,9 @@ RSpec.describe Recurr::Events::Monthly do
 
   describe '#next' do
     it 'gets the next recurring event' do
-      Timecop.freeze(Time.local(2018, 1, 4)) do
-        event = described_class.new({ on: 5, at: 20 })
-        expected_time = Time.new(2018, 1, 12, 20)
+      Timecop.freeze(Time.local(2018, 1, 15)) do
+        event = described_class.new({ on: 20, at: 20 })
+        expected_time = Time.new(2018, 2, 20, 20)
 
         expect(event.next).to eq(expected_time)
       end
