@@ -13,11 +13,14 @@ module Recurr
                  raw_diff + on
                end
 
-        Time.new(start_year, start_month, start_day, at) + diff * 24 * 3600
+        Time.new(start_year, start_month, start_day, at) + diff * DAY_REPRESENTATION
       end
 
       def next
-        current + 7 * 24 * 3600
+        _current = current
+        diff = days_in_month - _current.day
+
+        _current + (diff + options[:on]) * DAY_REPRESENTATION
       end
 
       private

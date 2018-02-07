@@ -1,5 +1,4 @@
-require 'active_job'
-class Payment < ActiveJob::Base
+class Payment
   include Recurr::Adapters::ActiveRecord
 
   def perform

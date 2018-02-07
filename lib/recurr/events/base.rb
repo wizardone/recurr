@@ -7,6 +7,8 @@ module Recurr
                     :start_month,
                     :start_day
 
+      DAY_REPRESENTATION = 24 * 3600
+
       def initialize(options)
         @options = options
         @starts = options[:starts]&.to_time || Time.current

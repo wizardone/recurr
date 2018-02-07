@@ -15,11 +15,11 @@ module Recurr
                  raw_diff - start_week_day
                end
 
-        Time.new(start_year, start_month, start_day, at) + diff * 24 * 3600
+        Time.new(start_year, start_month, start_day, at) + diff * DAY_REPRESENTATION
       end
 
       def next
-        current + 7 * 24 * 3600
+        current + 7 * DAY_REPRESENTATION
       end
     end
   end
