@@ -27,21 +27,30 @@ RSpec.describe Recurr::RecurringEvent do
   end
 
   describe "#current" do
-
-    subject { described_class.new(scope: :daily, at: 13) }
-
     it 'gets the current event execution date' do
-      #event = instance_double(Recurr::Events::Daily)
-      #expect(event).to receive(:current)
-      expect(Recurr::Events::Daily).to receive(:new)
+      recurring_event = described_class.new(scope: :daily, at: 13, on: 1)
+      daily_event = instance_double(
+        Recurr::Events::Daily,
+        current: Recurr::Events::Daily.new(at: 13, on: 1)
+      )
+      expect(Recurr::Events::Daily).to receive(:new) { daily_event }
+      expect(daily_event).to receive(:current)
 
-      subject.current
+      recurring_event.current
     end
   end
 
   describe "#next" do
     it "gets the next occurence of the event" do
-      expect(subject.next).to be_nil
+      recurring_event = described_class.new(scope: :daily, at: 13, on: 1)
+      daily_event = instance_double(
+        Recurr::Events::Daily,
+        next: Recurr::Events::Daily.new(at: 13, on: 1)
+      )
+      expect(Recurr::Events::Daily).to receive(:new) { daily_event }
+      expect(daily_event).to receive(:next)
+
+      recurring_event.next
     end
   end
 

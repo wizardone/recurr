@@ -32,7 +32,7 @@ module Recurr
     end
 
     def next
-
+      recurring_event.next
     end
 
     def previous
@@ -56,6 +56,5 @@ module Recurr
         Recurr::Events::Monthly.new(options)
       end
     end
-
   end
 end
