@@ -47,13 +47,9 @@ module Recurr
 
     def recurring_event
       options = { on: on, at: at }
-      case scope.to_sym
-      when :daily
-        Recurr::Events::Daily.new(options)
-      when :weekly
-        Recurr::Events::Weekly.new(options)
-      when :monthly
-        Recurr::Events::Monthly.new(options)
+      klass = "Recurr::Events::#{scope.to_s.capitalize}"
+      if Module.const_defined?(klass)
+        Module.const_get(klass).new(options)
       end
     end
   end
