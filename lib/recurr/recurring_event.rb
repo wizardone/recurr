@@ -27,8 +27,8 @@ module Recurr
       recurring_event.current
     end
 
-    def passed?
-
+    def passed?(time)
+      time > current
     end
 
     def next
@@ -36,10 +36,6 @@ module Recurr
     end
 
     def previous
-
-    end
-
-    def occurences(start:, end:) # or range?
 
     end
 
