@@ -27,8 +27,9 @@ module Recurr
       recurring_event.current
     end
 
-    def passed?(time)
-      time > current
+    def passed?(desired_time)
+      desired_time = desired_time.to_time unless is_a?(::Time)
+      desired_time > current
     end
 
     def next

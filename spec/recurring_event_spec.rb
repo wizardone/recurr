@@ -61,15 +61,19 @@ RSpec.describe Recurr::RecurringEvent do
   end
 
   describe "#passed?" do
-    it "checks if a time is pass the current event time" do
-      recurring_event = described_class.new(scope: :daily, at: 13)
-      desired_time = Time.new + (3600 * 7)
+    let(:recurring_event) { described_class.new(scope: :daily, at: 13) }
+    it "returns true - if a time is pass the current event time" do
+      desired_time = Time.new + (3600 * 24)
       expect(recurring_event.passed?(desired_time)).to be true
     end
 
-    it "checks if a time is pass the current event time" do
-      recurring_event = described_class.new(scope: :daily, at: 13)
-      desired_time = Time.new - (3600 * 7)
+    it "returns false - if a time is not pass the current event time" do
+      desired_time = Time.new - (3600 * 24)
+      expect(recurring_event.passed?(desired_time)).to be false
+    end
+
+    it "accepts a regular date object" do
+      desired_time = Date.yesterday
       expect(recurring_event.passed?(desired_time)).to be false
     end
   end
